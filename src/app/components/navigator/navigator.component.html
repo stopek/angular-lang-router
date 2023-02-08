@@ -1,0 +1,14 @@
+<ng-container *wmContent="let navigator select 'navigator'">
+  <nav>
+    <br />
+    <br />
+    <a routerLink="/pl">PL</a> | <a routerLink="/en">EN</a>
+    <hr />
+    <a [routerLink]="navigator.urls['home']">HOME</a> | <a [routerLink]="navigator.urls['about']">ABOUT</a> |
+    <a [routerLink]="[navigator.urls['edit_user'] | path: { id: 123 }]">EDIT USER</a> | <a routerLink="/pl/any">404</a>
+    <br />
+    <br />
+  </nav>
+</ng-container>
+
+<router-outlet></router-outlet>
