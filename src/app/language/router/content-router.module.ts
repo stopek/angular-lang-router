@@ -53,6 +53,9 @@ export function resolveRoutesWithContent(routes: RoutesWithContent, source: stri
       route.children = resolveRoutesWithContent(route.children, source, selector);
     }
 
+    console.log({
+      route,
+    })
     // Done
     return route;
   });
@@ -69,7 +72,6 @@ export function flatten<T>(arr: T[][]): T[] {
 })
 /** Router module with dynamic content loading  */
 export class ContentRouterModule {
-
   constructor(@Inject(ROUTES) routes: RoutesWithContent[], config: ContentConfigurator) {
     // Parses the routes adding content resolvers on loading beforing the actual routing accurs
     // This approach works both with JIT and AOT

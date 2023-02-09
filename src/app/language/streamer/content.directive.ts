@@ -4,14 +4,14 @@ import {map} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
 
 @Directive({
-  selector: 'ng-template[wmContent]'
+  selector: 'ng-template[translations]'
 })
 /** Provides the selected content to be consumed by the template */
 export class ContentDirective implements OnInit, OnDestroy {
 
   public $implicit: any = [];
   /** Defines the default value to use whenever the requested content were missing */
-  @Input() wmContentOr: any = [];
+  @Input() translationsOr: any = [];
   private sub!: Subscription;
 
   constructor(private content: ContentStreamer, private tpl: TemplateRef<ContentDirective>, private vcr: ViewContainerRef) {
@@ -24,11 +24,11 @@ export class ContentDirective implements OnInit, OnDestroy {
 
   /** Binds the requested content as an object directly:
    * Usage:
-   * <... *wmContent="let data select 'content.page1'">
+   * <... *translations="let data select 'content.page1'">
    *   ...
    *   <span>{{ data.title }}</span>
    */
-  @Input() set wmContentSelect(selector: string) {
+  @Input() set translationsSelect(selector: string) {
     // Unsubscribes previous subscriptions
     if (!!this.sub) {
       this.sub.unsubscribe();
@@ -40,25 +40,25 @@ export class ContentDirective implements OnInit, OnDestroy {
     // Subscribes to the data stream
     this.sub = this.content.stream(selector)
       // Binds the data content
-      .subscribe(data => this.$implicit = data || this.wmContentOr);
+      .subscribe(data => this.$implicit = data || this.translationsOr);
   }
 
   /** Binds the requested content as an observable:
    * Usage:
-   * <... *wmContent="let data$ stream 'content.page1'">
+   * <... *translations="let data$ stream 'content.page1'">
    *   ...
    *   <... *ngIf="data$ | async as data">
    *     ...
    *     <span>{{ data.title }}</span>
    */
-  @Input() set wmContentStream(selector: string) {
+  @Input() set translationsStream(selector: string) {
     // Skips on null selectors
     if (!selector) {
       return;
     }
     // Binds the data stream observable
     this.$implicit = this.content.stream(selector)
-      .pipe(map(value => value || this.wmContentOr));
+      .pipe(map(value => value || this.translationsOr));
   }
 
   ngOnInit() {

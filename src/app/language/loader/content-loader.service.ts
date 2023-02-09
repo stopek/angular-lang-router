@@ -15,14 +15,13 @@ export interface LoaderCache {
   providedIn: "root",
 })
 export class ContentLoader {
-
   /** Content data observable */
   readonly data$ = new ReplaySubject<LoaderCache>(1);
-  // Data snapshot keeps track of the currenlty selected language as well
+
+  /** Data snapshot keeps track of the currenlty selected language as well */
   protected data!: LoaderCache;
 
-  constructor(readonly config: ContentConfigurator, readonly http: HttpClient) {
-  }
+  constructor(readonly config: ContentConfigurator, readonly http: HttpClient) {}
 
   /** Returns the cached data */
   public get cache(): LoaderCache {
@@ -49,7 +48,6 @@ export class ContentLoader {
    * param moduleName the json file name to load
    */
   public loadFile(path: string, lang: string, name: string): Observable<any> {
-
     // Flushes the cache when switching language
     if (lang !== this.language) {
       this.flush(lang);

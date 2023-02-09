@@ -12,14 +12,11 @@ import {ContentModule} from "./language/content.module";
 
 const routes: Routes = [
   {path: '', loadChildren: () => import('./app-routing.module').then(m => m.AppRoutingModule)},
-  {path: ':lang', loadChildren: () => import('./app-routing.module').then(m => m.AppRoutingModule)},
-  {path: '**', redirectTo: "not-found", pathMatch: 'full'}
 ];
 
 @NgModule({
   imports: [
     BrowserModule,
-
     ContentModule.init({
       selector: "lang",
       source: "assets/i18n",

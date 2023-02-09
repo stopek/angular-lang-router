@@ -10,10 +10,16 @@ export class AppComponent {
   constructor(private contentSelector: ContentSelector, private router: Router) {
     this.router.events.subscribe(async (res) => {
       if (res instanceof NavigationEnd) {
-        const allowed = contentSelector.isValueAllowed(res.url.split("/").filter(segment => segment)?.[0]);
+        const segments = res.url.split("/").filter(segment => segment);
+        const allowed = contentSelector.isValueAllowed(segments?.[0]);
+
+        if (segments.length > 1) {
+          delete segments[0];
+        }
 
         if (!allowed) {
-          // await router.navigate(["/not-found"]);
+          await router.navigate([`pl/${segments.join("/")}`]);
+          return;
         }
       }
     });

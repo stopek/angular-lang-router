@@ -10,21 +10,18 @@ export type AllowedContent = Observable<true | UrlTree> | Promise<true | UrlTree
 })
 /** Default ContentSelector reverting to the browser language if 'auto' has been specified  */
 export class ContentSelector implements CanActivate {
-
-  constructor(readonly router: Router, readonly config: ContentConfigurator) {
-  }
+  constructor(readonly router: Router, readonly config: ContentConfigurator) {}
 
   /** Two digits browser language code */
   public get browserLanguage(): string {
-
     const detected = this.detectLanguage().split('-')[0];
+
     console.log("Browser language:", detected);
 
     return detected;
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): AllowedContent {
-
     // Gets the language code requested from the route
     const requested = this.requestedValue(route);
     console.log('Requested language:', requested);
@@ -57,7 +54,6 @@ export class ContentSelector implements CanActivate {
 
   /** Detects the preferred language according to the browser, whenever possible */
   private detectLanguage(): string {
-
     const navigator: any = !!window && window.navigator || {};
 
     return (navigator.languages ? navigator.languages[0] : null) ||

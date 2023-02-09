@@ -3,19 +3,17 @@ import {Inject, Injectable, InjectionToken, Optional} from '@angular/core';
 export const ContentConfigToken = new InjectionToken<ContentConfig>('content.config');
 
 export interface ContentConfig {
-  selector?: string;          // 'lang'
-  source?: string;            // 'assets/i18n'
-  defaultValue?: string;      // 'en'
-  supportedValues?: string[]; // ['en']
+  selector?: string;
+  source?: string;
+  defaultValue?: string;
+  supportedValues?: string[];
 }
 
 @Injectable({
   providedIn: "root",
 })
 export class ContentConfigurator implements ContentConfig {
-
-  constructor(@Optional() @Inject(ContentConfigToken) readonly config: ContentConfig) {
-  }
+  constructor(@Optional() @Inject(ContentConfigToken) readonly config: ContentConfig) {}
 
   private _currentValue!: string;
 

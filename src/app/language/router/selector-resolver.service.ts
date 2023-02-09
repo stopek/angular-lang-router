@@ -8,7 +8,6 @@ import {ContentConfigurator} from '../loader/content-configurator.service';
   providedIn: "root",
 })
 export class SelectorResolver implements Resolve<string> {
-
   constructor(readonly config: ContentConfigurator) {}
 
   public resolve(route: ActivatedRouteSnapshot | null): string {
@@ -18,6 +17,10 @@ export class SelectorResolver implements Resolve<string> {
     }
 
     // Returns the language code from the param map recurring up till the root when needed
-    return route.paramMap.get(this.config.selector) || this.resolve(route.parent);
+    const lang = route.paramMap.get(this.config.selector) || this.resolve(route.parent);
+    console.log({
+      lang,
+    })
+    return lang;
   }
 }

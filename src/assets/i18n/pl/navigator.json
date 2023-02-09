@@ -1,8 +1,8 @@
 {
   "test": "Testy navigatora",
   "urls": {
-    "about": "/about",
-    "home": "/",
-    "edit_user": "/user/:id/edit"
+    "about": "/pl/about",
+    "home": "/pl",
+    "edit_user": "/pl/user/:id/edit"
   }
 }

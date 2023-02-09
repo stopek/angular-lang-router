@@ -2,12 +2,14 @@ import {ContentRouterModule, RoutesWithContent} from "./language/router/content-
 import {NavigatorComponent} from "./components/navigator/navigator.component";
 import {HomeComponent} from "./components/home/home.component";
 import {AboutComponent} from "./components/about/about.component";
-import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {NgModule} from "@angular/core";
+import {NotFoundComponent} from "./components/not-found/not-found.component";
 
 const routes: RoutesWithContent = [
+  {path: '', redirectTo: 'pl', pathMatch: "full"},
   {
-    path: '', component: NavigatorComponent,
+    path: ':lang',
+    component: NavigatorComponent,
     content: "navigator",
     children: [
       {
@@ -19,8 +21,10 @@ const routes: RoutesWithContent = [
         path: 'about',
         component: AboutComponent,
       },
-    ]
-  }
+      {path: 'not-found', component: NotFoundComponent, pathMatch: 'full'},
+      {path: '**', redirectTo: "not-found", pathMatch: 'full'}
+    ],
+  },
 ];
 
 @NgModule({
