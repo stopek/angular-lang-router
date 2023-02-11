@@ -5,6 +5,7 @@
     "about": "/en/about",
     "home": "/en",
     "me": "/en/about/me",
+    "user": "/en/about/user",
     "admin": "/en/about/user/admin",
     "john": "/en/about/user/john",
     "user_param": "/en/about/user/:user",

@@ -3,39 +3,41 @@
 <section class="router">
   <h2>main/layout - router</h2>
 
-  <ng-container *translations="let navigator; select: 'global'">
-    <nav>
-      <ul>
-        <li><a [routerLink]="navigator.urls['home']">HOME</a></li>
-        <li><a [routerLink]="navigator.urls['about']">ABOUT</a></li>
-        <li><a [routerLink]="navigator.urls['me']">ME</a></li>
-        <li><a [routerLink]="navigator.urls['admin']">ADMIN</a></li>
-        <li><a [routerLink]="navigator.urls['john']">JOHN</a></li>
-        <li>
-          <a
-            [routerLink]="
-              navigator.urls['user_param'] | path : { user: 'john' }
-            "
-            >JOHN (WITH PARAM)</a
-          >
-        </li>
-        <li>
-          <a
-            [routerLink]="
-              navigator.urls['user_param'] | path : { user: 'admin' }
-            "
-            >ADMIN (WITH PARAM)</a
-          >
-        </li>
-        <li><a routerLink="/any">INVALID LANG</a></li>
-        <li><a routerLink="/pl/any">NOT FOUND(PL)</a></li>
-        <li><a routerLink="/en/any">NOT FOUND(EN)</a></li>
-        <li><a routerLink="/pl">PL</a></li>
-        <li><a routerLink="/en">EN</a></li>
-        <li><a [routerLink]="navigator.urls['readme']">README</a></li>
-      </ul>
-    </nav>
-  </ng-container>
+  <section class="layout">
+    <ng-container *translations="let navigator; select: 'global'">
+      <nav>
+        <ul>
+          <li><a [routerLink]="navigator.urls['home']">HOME</a></li>
+          <li><a [routerLink]="navigator.urls['about']">ABOUT</a></li>
+          <li><a [routerLink]="navigator.urls['me']">ME</a></li>
+          <li><a [routerLink]="navigator.urls['user']">USER</a></li>
+
+          <li><a [routerLink]="navigator.urls['admin']">ADMIN</a></li>
+          <li><a [routerLink]="navigator.urls['john']">JOHN</a></li>
+          <li>
+            <a
+              [routerLink]="navigator.urls['user_param'] | path : { user: 'john' }"
+            >
+              JOHN (WITH PARAM)
+            </a>
+          </li>
+          <li>
+            <a
+              [routerLink]="navigator.urls['user_param'] | path : { user: 'admin' }"
+            >
+              ADMIN (WITH PARAM)
+            </a>
+          </li>
+          <li><a routerLink="/any">INVALID LANG</a></li>
+          <li><a routerLink="/pl/any">NOT FOUND(PL)</a></li>
+          <li><a routerLink="/en/any">NOT FOUND(EN)</a></li>
+          <li><a routerLink="/pl">PL</a></li>
+          <li><a routerLink="/en">EN</a></li>
+          <li><a [routerLink]="navigator.urls['readme']">README</a></li>
+        </ul>
+      </nav>
+    </ng-container>
+  </section>
 
   <aside>
     <router-outlet></router-outlet>

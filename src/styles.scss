@@ -16,7 +16,7 @@ section.router {
   padding: 5px;
   margin: 5px;
   background: #3c3c3c;
-  border: 3px dashed crimson;
+  border: 3px dashed #77031a;
 }
 
 section.content {
@@ -25,13 +25,17 @@ section.content {
 }
 
 section.layout {
-  background: darksalmon;
+  background: #008f8f;
   padding: 25px;
 }
 
 a {
-  color: #6969de;
+  color: white;
+  font-weight: bold;
   text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 h1, h2 {
@@ -48,7 +52,7 @@ h1, h2 {
 }
 
 aside {
-  border: 2px dashed aqua;
+  border: 2px dashed #008f8f;
   padding: 5px;
 }
 
