@@ -8,6 +8,7 @@
     "admin": "/en/about/user/admin",
     "john": "/en/about/user/john",
     "user_param": "/en/about/user/:user",
-    "edit_user": "/en/user/:id/edit"
+    "edit_user": "/en/user/:id/edit",
+    "readme": "/en/readme"
   }
 }

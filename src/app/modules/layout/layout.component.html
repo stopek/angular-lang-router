@@ -27,11 +27,12 @@
             >ADMIN (WITH PARAM)</a
           >
         </li>
-        <li><a routerLink="/any">NOT FOUND(NO LANG)</a></li>
+        <li><a routerLink="/any">INVALID LANG</a></li>
         <li><a routerLink="/pl/any">NOT FOUND(PL)</a></li>
         <li><a routerLink="/en/any">NOT FOUND(EN)</a></li>
         <li><a routerLink="/pl">PL</a></li>
         <li><a routerLink="/en">EN</a></li>
+        <li><a [routerLink]="navigator.urls['readme']">README</a></li>
       </ul>
     </nav>
   </ng-container>

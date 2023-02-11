@@ -21,6 +21,7 @@ section.router {
 
 section.content {
   background: darkgreen;
+  padding: 25px;
 }
 
 a {
@@ -28,18 +29,27 @@ a {
   text-decoration: none;
 }
 
-h1 {
-  font-size: 30px;
-  margin: 15px 0;
+h1, h2 {
+  margin: 0 0 15px 0;
   padding: 0;
   line-height: normal;
+  &h1 {
+    font-size: 30px;
+  }
+
+  &h2 {
+    font-size: 25px;
+  }
 }
 
 aside {
   border: 2px dashed aqua;
+  padding: 5px;
 }
 
 nav {
+  margin-bottom: 25px;
+
   ul {
     display: flex;
     gap: 20px;
