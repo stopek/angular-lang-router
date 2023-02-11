@@ -1,0 +1,14 @@
+{
+  "global_variable": "To jest zmienna globalna",
+
+  "test": "Testy navigatora",
+  "urls": {
+    "about": "/pl/about",
+    "home": "/pl",
+    "me": "/pl/about/me",
+    "admin": "/pl/about/user/admin",
+    "john": "/pl/about/user/john",
+    "user_param": "/pl/about/user/:user",
+    "edit_user": "/pl/user/:id/edit"
+  }
+}

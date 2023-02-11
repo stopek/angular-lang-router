@@ -1,8 +1,0 @@
-{
-  "test": "Navigator tests",
-  "urls": {
-    "about": "/en/about",
-    "home": "/en",
-    "edit_user": "/en/user/:id/edit"
-  }
-}

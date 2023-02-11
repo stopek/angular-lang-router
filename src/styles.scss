@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  color: white;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+}
+
+header, footer {
+  background: rgba(0, 0, 0, 0.5);
+  margin: 5px;
+  padding: 5px;
+}
+
+section.router {
+  padding: 5px;
+  margin: 5px;
+  background: #3c3c3c;
+  border: 3px dashed crimson;
+}
+
+section.content {
+  background: darkgreen;
+}
+
+a {
+  color: #ff641d;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 30px;
+  margin: 15px 0;
+  padding: 0;
+  line-height: normal;
+}
+
+aside {
+  border: 2px dashed aqua;
+}
+
+nav {
+  ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 10px 0;
+    padding: 0;
+
+    li {
+      margin: 0;
+      padding: 0;
+      position: relative;
+
+      &:not(:last-child) :after {
+        position: absolute;
+        display: block;
+        right: -12px;
+        content: '|';
+        top: 0;
+      }
+    }
+  }
+}

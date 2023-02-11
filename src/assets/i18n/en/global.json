@@ -1,0 +1,14 @@
+{
+  "global_variable": "This is global variable",
+
+  "test": "Navigator tests",
+  "urls": {
+    "about": "/en/about",
+    "home": "/en",
+    "me": "/en/about/me",
+    "admin": "/en/about/user/admin",
+    "john": "/en/about/user/john",
+    "user_param": "/en/about/user/:user",
+    "edit_user": "/en/user/:id/edit"
+  }
+}
