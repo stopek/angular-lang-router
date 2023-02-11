@@ -1,6 +1,8 @@
 import { Inject, ModuleWithProviders, NgModule } from '@angular/core';
 import { Route, RouterModule, ROUTES, Routes } from '@angular/router';
+
 import { ContentConfigurator } from '../loader/content-configurator.service';
+
 import { ContentResolver } from './content-resolver';
 import { ContentModule } from '../content.module';
 

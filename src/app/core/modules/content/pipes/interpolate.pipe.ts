@@ -1,11 +1,12 @@
-import { Pipe } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
+
 import { PluckPipe } from './pluck.pipe';
 
 /** Replace keys embedded into the input string withing double brackets
  * with their corresponding values pluck from the conteext object
  * @example 'Counting {{ count }}' | interpolate: this */
 @Pipe({ name: 'interpolate', pure: false })
-export class InterpolatePipe extends PluckPipe {
+export class InterpolatePipe extends PluckPipe implements PipeTransform {
   override transform(value: any, context?: any): string {
     if (typeof value !== 'string') {
       return value;

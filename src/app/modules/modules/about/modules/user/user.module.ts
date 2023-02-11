@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LayoutComponent } from './layout/layout.component';
+import { NgModule } from '@angular/core';
+
+import { AdminComponent } from './components/admin/admin.component';
 import { JohnComponent } from './components/john/john.component';
+import { LayoutComponent } from './layout/layout.component';
 
 import { UserRoutingModule } from './user-routing.module';
-import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [LayoutComponent, JohnComponent, AdminComponent],

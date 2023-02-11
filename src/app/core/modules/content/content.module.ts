@@ -1,15 +1,16 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+
 import {
   ContentConfig,
   ContentConfigToken,
   ContentConfigurator,
 } from './loader/content-configurator.service';
 import { ContentLoader } from './loader/content-loader.service';
+import { InterpolationPipesModule } from './pipes/interpolation.module';
 import { SelectorResolver } from './router/selector-resolver.service';
 import { ContentStreamer } from './streamer/content-streamer.service';
 import { ContentDirective } from './streamer/content.directive';
-import { InterpolationPipesModule } from './pipes/interpolation.module';
 
 @NgModule({
   declarations: [ContentDirective],

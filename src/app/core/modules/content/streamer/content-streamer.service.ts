@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ContentConfigurator } from '../loader/content-configurator.service';
-import { ContentLoader } from '../loader/content-loader.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { ContentConfigurator } from '../loader/content-configurator.service';
+import { ContentLoader } from '../loader/content-loader.service';
 
 /** Streams the data content from the local ContentLoader cache */
 @Injectable({

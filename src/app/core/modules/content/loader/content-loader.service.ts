@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, tap, zip } from 'rxjs/operators';
-import { ContentConfigurator } from './content-configurator.service';
+import { Injectable } from '@angular/core';
 import { forkJoin, Observable, of, ReplaySubject } from 'rxjs';
+import { catchError, tap, zip } from 'rxjs/operators';
+
+import { ContentConfigurator } from './content-configurator.service';
 
 export interface LoaderCache {
   lang: string;

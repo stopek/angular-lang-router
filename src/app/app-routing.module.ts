@@ -1,14 +1,16 @@
+import { NgModule } from '@angular/core';
+
 import {
   ContentRouterModule,
   RoutesWithContent,
 } from './core/modules/content/router/content-router.module';
-import { LayoutComponent } from './modules/layout/layout.component';
-import { HomeComponent } from './modules/components/home/home.component';
-import { NgModule } from '@angular/core';
-import { NotFoundComponent } from './modules/components/not-found/not-found.component';
 import { ContentSelector } from './core/modules/content/router/content-selector.service';
-import { InitComponent } from './init.component';
+import { HomeComponent } from './modules/components/home/home.component';
+import { NotFoundComponent } from './modules/components/not-found/not-found.component';
 import { ReadmeComponent } from './modules/components/readme/readme.component';
+import { LayoutComponent } from './modules/layout/layout.component';
+
+import { InitComponent } from './init.component';
 
 const routes: RoutesWithContent = [
   {

@@ -6,9 +6,10 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { ContentStreamer } from './content-streamer.service';
-import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { ContentStreamer } from './content-streamer.service';
 
 @Directive({
   selector: 'ng-template[translations]',

@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ContentStreamer } from '../streamer/content-streamer.service';
 import { Subscription } from 'rxjs';
+
+import { ContentStreamer } from '../streamer/content-streamer.service';
 
 @Pipe({
   name: 'translate',

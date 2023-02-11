@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { AboutRoutingModule } from './about-routing.module';
 import { LayoutComponent } from './layout/layout.component';
+
+import { AboutRoutingModule } from './about-routing.module';
 
 @NgModule({
   declarations: [LayoutComponent],

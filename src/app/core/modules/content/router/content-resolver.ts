@@ -1,9 +1,11 @@
 import { inject, InjectionToken, Type } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { SelectorResolver } from './selector-resolver.service';
-import { ContentLoader } from '../loader/content-loader.service';
-import { catchError, take } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { catchError, take } from 'rxjs/operators';
+
+import { ContentLoader } from '../loader/content-loader.service';
+
+import { SelectorResolver } from './selector-resolver.service';
 
 /** Base resolver loading the page content according to the requested language */
 export class ContentResolver implements Resolve<any> {

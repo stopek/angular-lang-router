@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+
 import { ContentConfigurator } from '../loader/content-configurator.service';
 
 /** Default language code resolver. The language code is expected to be a ':lang' param of the root route first child.

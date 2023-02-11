@@ -6,8 +6,9 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { ContentConfigurator } from '../loader/content-configurator.service';
 import { Observable } from 'rxjs';
+
+import { ContentConfigurator } from '../loader/content-configurator.service';
 
 export type AllowedContent =
   | Observable<true | UrlTree>
