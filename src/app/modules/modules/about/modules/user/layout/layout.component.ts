@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-user-layout',
   templateUrl: './layout.component.html',
 })
-export class LayoutComponent {
-
-}
+export class LayoutComponent {}

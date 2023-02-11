@@ -1,11 +1,14 @@
-import {ContentRouterModule, RoutesWithContent} from "./core/modules/content/router/content-router.module";
-import {LayoutComponent} from "./modules/layout/layout.component";
-import {HomeComponent} from "./modules/components/home/home.component";
-import {NgModule} from "@angular/core";
-import {NotFoundComponent} from "./modules/components/not-found/not-found.component";
-import {ContentSelector} from "./core/modules/content/router/content-selector.service";
-import {InitComponent} from "./init.component";
-import {ReadmeComponent} from "./modules/components/readme/readme.component";
+import {
+  ContentRouterModule,
+  RoutesWithContent,
+} from './core/modules/content/router/content-router.module';
+import { LayoutComponent } from './modules/layout/layout.component';
+import { HomeComponent } from './modules/components/home/home.component';
+import { NgModule } from '@angular/core';
+import { NotFoundComponent } from './modules/components/not-found/not-found.component';
+import { ContentSelector } from './core/modules/content/router/content-selector.service';
+import { InitComponent } from './init.component';
+import { ReadmeComponent } from './modules/components/readme/readme.component';
 
 const routes: RoutesWithContent = [
   {
@@ -22,7 +25,7 @@ const routes: RoutesWithContent = [
         path: ':lang',
         component: LayoutComponent,
         canActivate: [ContentSelector],
-        content: "global",
+        content: 'global',
         children: [
           {
             path: '',
@@ -35,22 +38,25 @@ const routes: RoutesWithContent = [
           },
           {
             path: '',
-            loadChildren: () => import('./modules/modules/about/about.module').then(m => m.AboutModule)
+            loadChildren: () =>
+              import('./modules/modules/about/about.module').then(
+                (m) => m.AboutModule
+              ),
           },
-          {path: 'not-found', component: NotFoundComponent, pathMatch: 'full'},
-          {path: '**', redirectTo: "not-found", pathMatch: 'full'}
+          {
+            path: 'not-found',
+            component: NotFoundComponent,
+            pathMatch: 'full',
+          },
+          { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
         ],
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 @NgModule({
-  declarations: [
-    InitComponent
-  ],
-  imports: [
-    ContentRouterModule.forChild(routes)
-  ],
+  declarations: [InitComponent],
+  imports: [ContentRouterModule.forChild(routes)],
 })
 export class AppRoutingModule {}

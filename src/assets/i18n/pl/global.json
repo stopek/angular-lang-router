@@ -1,6 +1,5 @@
 {
   "global_variable": "To jest zmienna globalna",
-
   "test": "Testy navigatora",
   "urls": {
     "about": "/pl/about",

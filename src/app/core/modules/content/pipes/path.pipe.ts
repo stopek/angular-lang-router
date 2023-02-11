@@ -1,14 +1,13 @@
-import {Pipe, PipeTransform} from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 
 type TParam = string | number | boolean;
 export type TRouteParams = Record<string, TParam>;
 
 @Pipe({
-  name: "path"
+  name: 'path',
 })
 export class PathPipe implements PipeTransform {
   transform(path: string, params: TRouteParams): string {
-
     let outputRoute = path.toString();
 
     Object.keys(params).forEach((key) => {
@@ -18,7 +17,7 @@ export class PathPipe implements PipeTransform {
       if (typeof params[key] !== 'undefined') {
         outputRoute = outputRoute.replace(
           regex,
-          clearParam ? '' : '$1' + (params[key] ?? '').toString(),
+          clearParam ? '' : '$1' + (params[key] ?? '').toString()
         );
       }
     });

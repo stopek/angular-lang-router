@@ -1,6 +1,5 @@
 {
   "global_variable": "This is global variable",
-
   "test": "Navigator tests",
   "urls": {
     "about": "/en/about",

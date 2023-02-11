@@ -1,17 +1,18 @@
-import {Injectable} from '@angular/core';
-import {ContentConfigurator} from '../loader/content-configurator.service';
-import {ContentLoader} from '../loader/content-loader.service';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { ContentConfigurator } from '../loader/content-configurator.service';
+import { ContentLoader } from '../loader/content-loader.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 /** Streams the data content from the local ContentLoader cache */
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ContentStreamer {
-
-  constructor(readonly loader: ContentLoader, readonly config: ContentConfigurator) {
-  }
+  constructor(
+    readonly loader: ContentLoader,
+    readonly config: ContentConfigurator
+  ) {}
 
   /** The content data snapshot */
   get data(): any {
@@ -35,20 +36,17 @@ export class ContentStreamer {
 
   /** Streams the resolved content from the route data observable */
   public stream(selector: string = ''): Observable<any> {
-    return this.data$.pipe(map(data => this.select(selector, data)));
+    return this.data$.pipe(map((data) => this.select(selector, data)));
   }
 
   /** Parses the data content returning the selected property */
   public select(selector: string, data: any = this.data): any {
-
     if (selector === '') {
       return data;
     }
 
     return selector.split('.').reduce((value, token) => {
-
-      return (value === undefined || value === null) ? value : value[token];
-
+      return value === undefined || value === null ? value : value[token];
     }, data);
   }
 }

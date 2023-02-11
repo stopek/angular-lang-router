@@ -1,11 +1,9 @@
-<header>
-  main/layout - header
-</header>
+<header>main/layout - header</header>
 
 <section class="router">
   <h2>main/layout - router</h2>
 
-  <ng-container *translations="let navigator select 'global'">
+  <ng-container *translations="let navigator; select: 'global'">
     <nav>
       <ul>
         <li><a [routerLink]="navigator.urls['home']">HOME</a></li>
@@ -13,8 +11,22 @@
         <li><a [routerLink]="navigator.urls['me']">ME</a></li>
         <li><a [routerLink]="navigator.urls['admin']">ADMIN</a></li>
         <li><a [routerLink]="navigator.urls['john']">JOHN</a></li>
-        <li><a [routerLink]="navigator.urls['user_param'] | path: { user: 'john' }">JOHN (WITH PARAM)</a></li>
-        <li><a [routerLink]="navigator.urls['user_param'] | path: { user: 'admin' }">ADMIN (WITH PARAM)</a></li>
+        <li>
+          <a
+            [routerLink]="
+              navigator.urls['user_param'] | path : { user: 'john' }
+            "
+            >JOHN (WITH PARAM)</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="
+              navigator.urls['user_param'] | path : { user: 'admin' }
+            "
+            >ADMIN (WITH PARAM)</a
+          >
+        </li>
         <li><a routerLink="/any">NOT FOUND(NO LANG)</a></li>
         <li><a routerLink="/pl/any">NOT FOUND(PL)</a></li>
         <li><a routerLink="/en/any">NOT FOUND(EN)</a></li>
@@ -29,6 +41,4 @@
   </aside>
 </section>
 
-<footer>
-  main/layout footer
-</footer>
+<footer>main/layout footer</footer>

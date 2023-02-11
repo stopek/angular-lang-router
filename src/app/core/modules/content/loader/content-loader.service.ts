@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {catchError, tap, zip} from 'rxjs/operators';
-import {ContentConfigurator} from './content-configurator.service';
-import {forkJoin, Observable, of, ReplaySubject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { catchError, tap, zip } from 'rxjs/operators';
+import { ContentConfigurator } from './content-configurator.service';
+import { forkJoin, Observable, of, ReplaySubject } from 'rxjs';
 
 export interface LoaderCache {
   lang: string;
@@ -12,7 +12,7 @@ export interface LoaderCache {
 
 /** Loader to load the content dynamically from JSON files */
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ContentLoader {
   /** Content data observable */
@@ -21,7 +21,10 @@ export class ContentLoader {
   /** Data snapshot keeps track of the currenlty selected language as well */
   protected data!: LoaderCache;
 
-  constructor(readonly config: ContentConfigurator, readonly http: HttpClient) {}
+  constructor(
+    readonly config: ContentConfigurator,
+    readonly http: HttpClient
+  ) {}
 
   /** Returns the cached data */
   public get cache(): LoaderCache {
@@ -35,12 +38,15 @@ export class ContentLoader {
 
   /** Flushes the cache */
   public flush(lang: string = this.config.defaultValue): LoaderCache {
-    return this.data = {lang};
+    return (this.data = { lang });
   }
 
   /** Checks if the requested language is allowed reverting to the default one otherwise  */
   public languageAllowed(lang: string): string {
-    return this.config.supportedValues.find(allowed => allowed === lang) || this.config.defaultValue;
+    return (
+      this.config.supportedValues.find((allowed) => allowed === lang) ||
+      this.config.defaultValue
+    );
   }
 
   /** Load the requested module in the specified language
@@ -66,19 +72,24 @@ export class ContentLoader {
       // Default language file (full)
       this.http.get(`${path}/${this.config.defaultValue}/${name}.json`),
       // Loads the requested language file only when differs from he default language
-      this.language !== this.config.defaultValue ?
-        // Requested language file (partial)
-        this.http.get(`${path}/${this.language}/${name}.json`).pipe(
-          // Reverts to the default language in case of errors (basically it pass an empty object
-          // since default content will be merged in the next map() )
-          catchError(() => of({}))
-          // Skips unnecessary loading
-        ) : of({})
+      this.language !== this.config.defaultValue
+        ? // Requested language file (partial)
+          this.http.get(`${path}/${this.language}/${name}.json`).pipe(
+            // Reverts to the default language in case of errors (basically it pass an empty object
+            // since default content will be merged in the next map() )
+            catchError(() => of({}))
+            // Skips unnecessary loading
+          )
+        : of({})
     ).pipe(
       // Packs the result by merging the modules whenever necessary
-      zip(data => this.language === this.config.defaultValue ? data[0] : this.merge(data[1], data[0])),
+      zip((data) =>
+        this.language === this.config.defaultValue
+          ? data[0]
+          : this.merge(data[1], data[0])
+      ),
       // Caches the content for further requests
-      tap(data => {
+      tap((data) => {
         this.cache[name] = data;
         this.data$.next(this.cache);
       })
@@ -87,25 +98,29 @@ export class ContentLoader {
 
   /** Deep merges the localModule with the defaultModule */
   private merge(localModule: any, defaultModule: any): any {
-
     // Done recurring when default module is no longer available
     if (!!defaultModule) {
-
       // Treat arrays as a special case, so, to keep them as array
       if (Array.isArray(defaultModule)) {
-
         // Overrides the locale array with tht default when they do not match
-        if (!Array.isArray(localModule) || localModule.length !== defaultModule.length) {
+        if (
+          !Array.isArray(localModule) ||
+          localModule.length !== defaultModule.length
+        ) {
           localModule = defaultModule;
         } else {
           // Recurs down the tree merging the array content
-          defaultModule.forEach((_, index) => localModule[index] = this.merge(localModule[index], defaultModule[index]));
+          defaultModule.forEach(
+            (_, index) =>
+              (localModule[index] = this.merge(
+                localModule[index],
+                defaultModule[index]
+              ))
+          );
         }
       } else {
-
         // Merges the object properties otherwise
-        Object.keys(defaultModule).forEach(key => {
-
+        Object.keys(defaultModule).forEach((key) => {
           // Copies each missing property
           if (!localModule[key]) {
             localModule[key] = defaultModule[key];
@@ -113,7 +128,6 @@ export class ContentLoader {
 
           // Recurs down the children properties otherwise
           else if (typeof localModule[key] === 'object') {
-
             localModule[key] = this.merge(localModule[key], defaultModule[key]);
           }
         });

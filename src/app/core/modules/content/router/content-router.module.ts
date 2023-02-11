@@ -1,8 +1,8 @@
-import {Inject, ModuleWithProviders, NgModule} from '@angular/core';
-import {Route, RouterModule, ROUTES, Routes} from '@angular/router';
-import {ContentConfigurator} from '../loader/content-configurator.service';
-import {ContentResolver} from './content-resolver';
-import {ContentModule} from '../content.module';
+import { Inject, ModuleWithProviders, NgModule } from '@angular/core';
+import { Route, RouterModule, ROUTES, Routes } from '@angular/router';
+import { ContentConfigurator } from '../loader/content-configurator.service';
+import { ContentResolver } from './content-resolver';
+import { ContentModule } from '../content.module';
 
 /** Extends routes with content */
 export interface RouteWithContent extends Route {
@@ -14,21 +14,26 @@ export interface RouteWithContent extends Route {
 export type RoutesWithContent = RouteWithContent[];
 
 // Walks doen the routes' tree applying content resolvers for the requested contents
-export function resolveRoutesWithContent(routes: RoutesWithContent, source: string, selector: string = 'lang'): Routes {
+export function resolveRoutesWithContent(
+  routes: RoutesWithContent,
+  source: string,
+  selector: string = 'lang'
+): Routes {
   // Skips empty routes
   if (!routes) {
     return [];
   }
 
   // Maps the incoming routes
-  return routes.map(route => {
+  return routes.map((route) => {
     // Grabs the source path from the route, when defined. Defaults to the global path otherwise.
     const path = route.source || source;
 
     // Whenever content is defined...
     if (!!route.content) {
       // Gets the content array
-      const content: string[] = typeof (route.content) === 'string' ? [route.content] : route.content;
+      const content: string[] =
+        typeof route.content === 'string' ? [route.content] : route.content;
       // Gets the resolve data map
       const resolve = route.resolve || {};
       // Builds the content resolvers map
@@ -50,7 +55,11 @@ export function resolveRoutesWithContent(routes: RoutesWithContent, source: stri
 
     // Walk down to children
     if (!!route.children) {
-      route.children = resolveRoutesWithContent(route.children, source, selector);
+      route.children = resolveRoutesWithContent(
+        route.children,
+        source,
+        selector
+      );
     }
 
     // Done
@@ -65,29 +74,40 @@ export function flatten<T>(arr: T[][]): T[] {
 
 @NgModule({
   imports: [ContentModule, RouterModule],
-  exports: [ContentModule, RouterModule]
+  exports: [ContentModule, RouterModule],
 })
 /** Router module with dynamic content loading  */
 export class ContentRouterModule {
-  constructor(@Inject(ROUTES) routes: RoutesWithContent[], config: ContentConfigurator) {
+  constructor(
+    @Inject(ROUTES) routes: RoutesWithContent[],
+    config: ContentConfigurator
+  ) {
     // Parses the routes adding content resolvers on loading beforing the actual routing accurs
     // This approach works both with JIT and AOT
-    const resolvedRoutes = resolveRoutesWithContent(flatten(routes), config.source, config.selector);
+    const resolvedRoutes = resolveRoutesWithContent(
+      flatten(routes),
+      config.source,
+      config.selector
+    );
 
     console.log({
       resolvedRoutes,
-    })
+    });
   }
 
   /** Initializes child routes with content */
-  static forChild(routes: RoutesWithContent): ModuleWithProviders<ContentRouterModule> {
+  static forChild(
+    routes: RoutesWithContent
+  ): ModuleWithProviders<ContentRouterModule> {
     return {
       ngModule: ContentRouterModule,
       providers: [
         {
-          provide: ROUTES, multi: true, useValue: routes,
-        }
-      ]
+          provide: ROUTES,
+          multi: true,
+          useValue: routes,
+        },
+      ],
     };
   }
 }

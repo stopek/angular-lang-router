@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {CookieService} from "ngx-cookie-service";
+import { CookieService } from 'ngx-cookie-service';
 
-import {ContentConfigurator} from "src/app/core/modules/content/loader/content-configurator.service";
+import { ContentConfigurator } from 'src/app/core/modules/content/loader/content-configurator.service';
 
 @Component({
   selector: 'app-john',

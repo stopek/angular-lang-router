@@ -1,30 +1,37 @@
-import {Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {ContentStreamer} from './content-streamer.service';
-import {map} from 'rxjs/operators';
-import {Subscription} from 'rxjs';
+import {
+  Directive,
+  Input,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
+import { ContentStreamer } from './content-streamer.service';
+import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Directive({
-  selector: 'ng-template[translations]'
+  selector: 'ng-template[translations]',
 })
 /** Provides the selected content to be consumed by the template */
 export class ContentDirective implements OnInit, OnDestroy {
-
   public $implicit: any = [];
   /** Defines the default value to use whenever the requested content were missing */
   @Input() translationsOr: any = [];
   private sub!: Subscription;
 
-  constructor(private content: ContentStreamer, private tpl: TemplateRef<ContentDirective>, private vcr: ViewContainerRef) {
-  }
+  constructor(
+    private content: ContentStreamer,
+    private tpl: TemplateRef<ContentDirective>,
+    private vcr: ViewContainerRef
+  ) {}
 
   /** The current resolved language code */
   get language(): string {
     return this.content.language;
   }
 
-  @Input() set translationsTest(selector: string) {
-
-  }
+  @Input() set translationsTest(selector: string) {}
 
   /** Binds the requested content as an object directly:
    * Usage:
@@ -42,9 +49,10 @@ export class ContentDirective implements OnInit, OnDestroy {
       return;
     }
     // Subscribes to the data stream
-    this.sub = this.content.stream(selector)
+    this.sub = this.content
+      .stream(selector)
       // Binds the data content
-      .subscribe(data => this.$implicit = data || this.translationsOr);
+      .subscribe((data) => (this.$implicit = data || this.translationsOr));
   }
 
   /** Binds the requested content as an observable:
@@ -61,8 +69,9 @@ export class ContentDirective implements OnInit, OnDestroy {
       return;
     }
     // Binds the data stream observable
-    this.$implicit = this.content.stream(selector)
-      .pipe(map(value => value || this.translationsOr));
+    this.$implicit = this.content
+      .stream(selector)
+      .pipe(map((value) => value || this.translationsOr));
   }
 
   ngOnInit() {

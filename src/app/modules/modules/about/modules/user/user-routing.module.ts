@@ -1,15 +1,18 @@
-import {NgModule} from '@angular/core';
-import {JohnComponent} from "./components/john/john.component";
+import { NgModule } from '@angular/core';
+import { JohnComponent } from './components/john/john.component';
 
-import {ContentRouterModule, RoutesWithContent} from "src/app/core/modules/content/router/content-router.module";
-import {LayoutComponent} from "./layout/layout.component";
-import {AdminComponent} from "./components/admin/admin.component";
+import {
+  ContentRouterModule,
+  RoutesWithContent,
+} from 'src/app/core/modules/content/router/content-router.module';
+import { LayoutComponent } from './layout/layout.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: RoutesWithContent = [
   {
     path: '',
     component: LayoutComponent,
-    content: "global",
+    content: 'global',
     children: [
       {
         path: 'john',
@@ -20,9 +23,9 @@ const routes: RoutesWithContent = [
         path: 'admin',
         content: 'admin',
         component: AdminComponent,
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 @NgModule({

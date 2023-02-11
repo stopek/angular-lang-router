@@ -1,7 +1,11 @@
-import {Injectable} from '@angular/core';
-import {NavigationBehaviorOptions, NavigationExtras, Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import {
+  NavigationBehaviorOptions,
+  NavigationExtras,
+  Router,
+} from '@angular/router';
 
-import {ContentConfigurator} from "../loader/content-configurator.service";
+import { ContentConfigurator } from '../loader/content-configurator.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +14,7 @@ export class RouterService {
   constructor(
     private router: Router,
     private contentConfig: ContentConfigurator
-  ) {
-  }
+  ) {}
 
   get events() {
     return this.router.events;
@@ -22,7 +25,8 @@ export class RouterService {
   }
 
   append(part: string): string {
-    const redirectTo = '/' + this.trimChar(this.contentConfig.currentValue + part, "/");
+    const redirectTo =
+      '/' + this.trimChar(this.contentConfig.currentValue + part, '/');
 
     console.log({
       redirectTo,
@@ -42,11 +46,14 @@ export class RouterService {
     return this.router.navigate(this.appendLanguage(commands), extras);
   }
 
-  navigateByUrl(url: string, extras?: NavigationBehaviorOptions): Promise<boolean> {
+  navigateByUrl(
+    url: string,
+    extras?: NavigationBehaviorOptions
+  ): Promise<boolean> {
     return this.router.navigateByUrl(this.append(url), extras);
   }
 
-  trimChar(string: string, charToRemove: string = " ") {
+  trimChar(string: string, charToRemove: string = ' ') {
     while (string.charAt(0) == charToRemove) {
       string = string.substring(1);
     }
