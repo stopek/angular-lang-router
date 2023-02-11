@@ -4,6 +4,15 @@
   <section class="layout">
     LayoutComponent[global.global_variable] =
     {{ "global.global_variable" | translate }}
+    <hr />
+    <ng-container *translations="let navigator; select: 'global'">
+      <nav>
+        <ul>
+          <li><a [routerLink]="navigator.urls['admin']">ADMIN</a></li>
+          <li><a [routerLink]="navigator.urls['john']">JOHN</a></li>
+        </ul>
+      </nav>
+    </ng-container>
   </section>
 
   <aside>
