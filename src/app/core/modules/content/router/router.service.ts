@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
   NavigationBehaviorOptions,
+  NavigationEnd,
   NavigationExtras,
   Router,
 } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 
 import { ContentConfigurator } from '../loader/content-configurator.service';
 
@@ -63,5 +65,15 @@ export class RouterService {
     }
 
     return string;
+  }
+
+  public subscribeRouterChange(
+    callback: (event: NavigationEnd) => Promise<void>
+  ): Subscription {
+    return this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        callback(event as NavigationEnd).then();
+      });
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 
 import { ContentConfigurator } from 'src/app/core/modules/content/loader/content-configurator.service';
+import { RouterService } from 'src/app/core/modules/content/router/router.service';
 
 @Component({
   selector: 'app-john',
@@ -10,14 +11,15 @@ import { ContentConfigurator } from 'src/app/core/modules/content/loader/content
 export class JohnComponent {
   constructor(
     private cookieService: CookieService,
-    private contentConfig: ContentConfigurator
+    private contentConfig: ContentConfigurator,
+    private routerService: RouterService
   ) {}
 
-  public initRedirect() {
+  public async initRedirect() {
     this.cookieService.set('redirect', 'yes', {
       expires: 5000,
       path: '/',
     });
-    window.location.replace('/' + this.contentConfig.currentValue);
+    await this.routerService.navigateByUrl(this.contentConfig.currentValue);
   }
 }
