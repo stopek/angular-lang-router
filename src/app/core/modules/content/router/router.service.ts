@@ -27,6 +27,12 @@ export class RouterService {
   }
 
   append(part: string): string {
+    const language = this.contentConfig.currentValue;
+    if (part.startsWith('/' + language)) {
+      console.log('Has part, redirect original ' + part);
+      return part;
+    }
+
     const redirectTo =
       '/' + this.trimChar(this.contentConfig.currentValue + part, '/');
 

@@ -27,7 +27,7 @@ const routes: Routes = [
     ContentModule.init({
       selector: 'lang',
       source: 'assets/i18n',
-      defaultValue: 'en',
+      defaultValue: 'pl',
       supportedValues: ['pl', 'en'],
     }),
     RouterModule.forRoot(routes),

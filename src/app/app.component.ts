@@ -16,31 +16,7 @@ export class AppComponent implements OnInit {
   // private routerService: RouterService,
   // private contentSelector: ContentSelector,
   // private router: Router
-  constructor(private contentStreamer: ContentStreamer) {
-    // this.router.events.subscribe(async (res) => {
-    //   if (res instanceof NavigationEnd) {
-    //     const segments = res.url.split('/').filter((segment) => segment);
-    //     const allowed = contentSelector.isValueAllowed(segments?.[0]);
-    //
-    //     if (segments.length > 1) {
-    //       delete segments[0];
-    //     }
-    //
-    //     console.log({
-    //       segments,
-    //       allowed,
-    //     });
-    //     return;
-    //
-    //     if (!allowed) {
-    //       await router.navigate([
-    //         `${contentSelector.config.defaultValue}/${segments.join('/')}`,
-    //       ]);
-    //       return;
-    //     }
-    //   }
-    // });
-  }
+  constructor(private contentStreamer: ContentStreamer) {}
 
   ngOnInit() {
     console.log(
